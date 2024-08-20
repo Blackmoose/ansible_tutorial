@@ -29,5 +29,7 @@
   270  ansible all -m yum -a update_cache=true --become --ask-become-pass 
   271  ansible all -m yum -a name=vim-nox --become --ask-become-pass 
   272  ansible all -m yum -a name=telnet --become --ask-become-pass 
-  273  ansible all -m yum -a name=tmux --become --ask-become-pass 
   284  history | grep "ansible" > stuff.txt
+  273  ansible all -m yum -a "name=snapd state=latest" --become --ask-become-pass 
+  273  ansible all -m yum -a "upgrade=dist" --become --ask-become-pass 
+ 

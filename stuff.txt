@@ -1,0 +1,33 @@
+  134  mv index.html fedora-ansible.html
+  144  ssh-keygen -t ed25519 -C "ansible"
+  147  ssh-copy-id -i .ssh/id_ansible.pub server1
+  148  ssh-copy-id -i .ssh/id_ansible.pub server2
+  149  ssh-copy-id -i .ssh/id_ansible.pub server3
+  150  ssh -i .ssh/id_ansible server1
+  151  ssh -i .ssh/id_ansible server2
+  152  ssh -i .ssh/id_ansible server3
+  213  git clone git@github.com:Blackmoose/ansible_tutorial.git
+  216  cd ansible_tutorial/
+  224  cd ansible_tutorial/
+  228  cd ansible_tutorial/
+  232   yum list ansible
+  233  sudo yum install ansible
+  236  cd ansible_tutorial/
+  246  ansible all --key-file ~/.ssh/id_ansible -i inventory -m ping 
+  248  nano ansible.cfg
+  250  ls /etc/ansible/
+  251  ansible all -m ping 
+  252  ansible all --list-hosts
+  253  ansible all -m gather_facts
+  254  ansible all -m gather_facts --limit server1
+  258  git add ansible.cfg 
+  259  git commmit -m "added ansible config file." 
+  261  git commit -m "added ansible config file." 
+  267  ansible all -m yum -a update_cache=true
+  268  ansible all -m yum -a update_cache=true --become --ask-become-pass 
+  269  ansible all -m apt -a update_cache=true
+  270  ansible all -m yum -a update_cache=true --become --ask-become-pass 
+  271  ansible all -m yum -a name=vim-nox --become --ask-become-pass 
+  272  ansible all -m yum -a name=telnet --become --ask-become-pass 
+  273  ansible all -m yum -a name=tmux --become --ask-become-pass 
+  284  history | grep "ansible" > stuff.txt

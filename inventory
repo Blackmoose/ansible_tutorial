@@ -1,4 +1,9 @@
-server1
-server2
-server3
+[web_servers]
+server1 
+ubuntu-server2 
 
+[db_servers]
+server2
+
+[file_servers]
+server3

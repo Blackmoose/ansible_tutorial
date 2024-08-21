@@ -1,0 +1,43 @@
+--- 
+
+- hosts: all
+  become: true
+  tasks: 
+  
+#  - name: update repo index
+#    yum:
+#        update_cache: yes
+#    when: ansible_distribution == "Fedora"
+
+  - name: install apache, httpd, and php packages
+    package:
+      name: 
+        - "{{ apache_package }}"
+        - "{{ php_package }}"
+      state: latest
+      update_cache: yes
+
+  - name: enable httpd
+    service: name=httpd enabled=yes
+    when: ansible_distribution == "Fedora"
+
+  - name: start httpd
+    service: name=httpd state=started
+    when: ansible_distribution == "Fedora"
+
+  - name: update firewall
+    ansible.builtin.shell:
+      cmd: "/usr/bin/firewall-cmd --add-port=80/tcp"
+    when: ansible_distribution == "Fedora"
+
+  - name: copy file to httpd root
+    ansible.builtin.copy:
+      src: index.html
+      dest: /var/www/html
+      owner: root
+      group: root
+      mode: '0755'
+    when: ansible_distribution == "Fedora"
+
+
+

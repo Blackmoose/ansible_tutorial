@@ -1,0 +1,15 @@
+- name: install mariadb package (Fedora)
+  tags: fedora, db, mariadb
+  dnf:
+    name:
+      - mariadb
+      - mariadb-server
+    state: latest
+  when: ansible_distribution == "Fedora"
+
+- name: install mariadb package on (Ubuntu)
+  tags: ubuntu, db, mariadb
+  dnf:
+    name: mariadb-server
+    state: latest
+  when: ansible_distribution == "Ubuntu"
